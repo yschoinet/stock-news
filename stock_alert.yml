@@ -1,0 +1,34 @@
+name: 주식 알리미 (매일 오전 10시)
+
+on:
+  schedule:
+    # UTC 기준 01:00 = 한국시간(KST) 10:00
+    - cron: '0 1 * * 1-5'   # 월~금 평일만 실행
+
+  # 수동 실행 버튼 (테스트용)
+  workflow_dispatch:
+
+jobs:
+  send-stock-alert:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. 코드 체크아웃
+      - name: 저장소 체크아웃
+        uses: actions/checkout@v4
+
+      # 2. Python 환경 설정
+      - name: Python 3.11 설정
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # 3. 의존 라이브러리 설치
+      - name: 라이브러리 설치
+        run: |
+          pip install requests feedparser
+
+      # 4. 스크립트 실행
+      - name: 주식 알리미 실행
+        run: |
+          python stock_alert.py
