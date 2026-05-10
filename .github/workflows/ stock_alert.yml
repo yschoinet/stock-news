@@ -3,7 +3,8 @@ name: 주식 알리미 (매일 오전 10시)
 on:
   schedule:
     # UTC 기준 01:00 = 한국시간(KST) 10:00
-    - cron: '0 1 * * 1-5'   # 월~금 평일만 실행
+    # 월~금 평일만 실행
+    - cron: '0 1 * * 1-5'
 
   # 수동 실행 버튼 (테스트용)
   workflow_dispatch:
@@ -26,7 +27,7 @@ jobs:
       # 3. 의존 라이브러리 설치
       - name: 라이브러리 설치
         run: |
-          pip install requests feedparser
+          pip install requests
 
       # 4. 스크립트 실행
       - name: 주식 알리미 실행
