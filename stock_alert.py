@@ -69,7 +69,7 @@ def get_corp_code_map(stock_code_map: dict) -> dict:
 # ─────────────────────────────────────────────
 def get_dart_disclosures(corp_code: str) -> list:
     """최근 1일 공시 목록 조회"""
-    yesterday = (datetime.today() - timedelta(days=1)).strftime("%Y%m%d")
+    yesterday = (datetime.today() - timedelta(days=4)).strftime("%Y%m%d")
     today     = datetime.today().strftime("%Y%m%d")
 
     url = "https://opendart.fss.or.kr/api/list.json"
